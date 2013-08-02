@@ -217,13 +217,13 @@ $app_name = idx($app_info, 'name', '');
         <p class="tagline">
           to 
           <a href="<?php echo he(idx($app_info, 'link'));?>" target="_top"><?php echo he($app_name); ?></a>
-          app 
+          app <br>
           <p>First <?php echo he(idx($basic, 'first_name')); ?> </p>
           <p>Last <?php echo he(idx($basic, 'last_name')); ?> </p>
           <p>Location <?php echo he(idx($basic, 'location')); ?> </p>
           <p>Email <?php echo he(idx($basic, 'email')); ?> </p>
           <p>hometown <?php echo he(idx($basic, 'hometown')); ?> </p>
-          <p>Picture <?php echo he(idx($basic, 'picture')); ?> </p>
+          <p>Picture <?php echo 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal'; ?> </p>
         </p>
 
         <div id="share-app">
@@ -250,7 +250,7 @@ $app_name = idx($app_info, 'name', '');
       <?php } else { ?>
       <div>
         <h1>Welcome</h1>
-        <div class="fb-login-button" data-scope="user_likes,user_photos"></div>
+        <div class="fb-login-button" data-scope="user_likes,user_photos, user_location,"></div>
       </div>
       <?php } ?>
     </header>
