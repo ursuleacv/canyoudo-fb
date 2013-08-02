@@ -215,8 +215,15 @@ $app_name = idx($app_info, 'name', '');
       <div>
         <h1>Welcome, <strong><?php echo he(idx($basic, 'name')); ?></strong></h1>
         <p class="tagline">
-          This is your app
+          to 
           <a href="<?php echo he(idx($app_info, 'link'));?>" target="_top"><?php echo he($app_name); ?></a>
+          app 
+          <p>First <?php echo he(idx($basic, 'first_name')); ?> </p>
+          <p>Last <?php echo he(idx($basic, 'last_name')); ?> </p>
+          <p>Location <?php echo he(idx($basic, 'location')); ?> </p>
+          <p>Email <?php echo he(idx($basic, 'email')); ?> </p>
+          <p>hometown <?php echo he(idx($basic, 'hometown')); ?> </p>
+          <p>Picture <?php echo he(idx($basic, 'picture')); ?> </p>
         </p>
 
         <div id="share-app">
@@ -249,8 +256,8 @@ $app_name = idx($app_info, 'name', '');
     </header>
 
     <section id="get-started">
-      <p>Welcome to your Facebook app, running on <span>heroku</span>!</p>
-      <a href="https://devcenter.heroku.com/articles/facebook" target="_top" class="button">Learn How to Edit This App</a>
+      <p>Welcome to I want, I can facebook application!</p>
+      <a href="http://canyoudo.ca" target="_top" class="button">Visit the website</a>
     </section>
 
     <?php
