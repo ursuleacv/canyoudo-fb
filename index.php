@@ -220,11 +220,13 @@ $app_name = idx($app_info, 'name', '');
           app <br>
           <p>First <?php echo he(idx($basic, 'first_name')); ?> </p>
           <p>Last <?php echo he(idx($basic, 'last_name')); ?> </p>
-          <p>Location <?php echo he(idx($basic, 'location')); ?> </p>
+          <p>Profile <?php echo he(idx($basic, 'link')); ?> </p>
+          <p>Location <?php echo he(idx($basic, 'location,name')); ?> </p>
           <p>Email <?php echo he(idx($basic, 'email')); ?> </p>
-          <p>hometown <?php echo he(idx($basic, 'hometown')); ?> </p>
           <p>Picture <?php echo 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal'; ?> </p>
+         <pre>
          <?php var_dump($basic); ?>
+         </pre>
         </p>
 
         <div id="share-app">
