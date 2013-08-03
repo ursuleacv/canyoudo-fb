@@ -123,6 +123,10 @@ $access_token = $facebook->getAccessToken();
           FB.ui(
             {
               method : 'feed',
+              name: 'Name',
+              description: 'Description',
+              caption: 'Caption',
+              picture: 'Picture',
               link   : $(this).attr('data-url')
             },
             function (response) {
