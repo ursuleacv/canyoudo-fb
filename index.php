@@ -124,9 +124,8 @@ $access_token = $facebook->getAccessToken();
             {
               method : 'feed',
               name: 'Name',
-              description: 'Description',
               caption: 'Caption',
-              picture: 'Picture',
+              picture: 'http://fbrell.com/f8.jpg',
               link   : $(this).attr('data-url')
             },
             function (response) {
