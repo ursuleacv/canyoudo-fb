@@ -224,7 +224,7 @@ $app_name = idx($app_info, 'name', '');
           <p>Email <?php echo he(idx($basic, 'email')); ?> </p>
           <p>hometown <?php echo he(idx($basic, 'hometown')); ?> </p>
           <p>Picture <?php echo 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal'; ?> </p>
-          var_dump($basic);
+         <?php var_dump($basic); ?>
         </p>
 
         <div id="share-app">
