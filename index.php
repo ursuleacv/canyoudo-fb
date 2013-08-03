@@ -235,7 +235,7 @@ $access_token = $facebook->getAccessToken();
          $appUrl = he(idx($app_info, 'link'));
          
           $attachment =  array(
-                              'access_token' => $access_token,
+                              
                               'message' => "$message",
                               'name' => "$name",
                               'description' => "$description",
