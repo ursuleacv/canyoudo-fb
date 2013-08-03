@@ -78,6 +78,8 @@ $app_info = $facebook->api('/'. AppInfo::appID());
 
 $app_name = idx($app_info, 'name', '');
 
+$access_token = $facebook->getAccessToken();
+
 ?>
 <!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#" lang="en">
@@ -224,9 +226,30 @@ $app_name = idx($app_info, 'name', '');
           <p>Location <?php echo $basic['hometown']['name']; ?> </p>
           <p>Email <?php echo he(idx($basic, 'email')); ?> </p>
           <p>Picture <?php echo 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal'; ?> </p>
-         <pre>
-         <?php var_dump($basic); ?>
-         </pre>
+          <?php
+         $message= 'Hello there';
+         $description= 'Description';
+         $pictureUrl = 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal';
+         $link = 'http://canyoudo.ca';
+         $name = he(idx($basic, 'name'));
+         $appUrl = he(idx($app_info, 'link'));
+         
+          $attachment =  array(
+                              'access_token' => $access_token,
+                              'message' => "$message",
+                              'name' => "$name",
+                              'description' => "$description",
+                              'link' => "$link",
+                              'picture' => "$pictureUrl",
+                              'actions' => array('name'=>'Try it now', 'link' => "$appUrl")
+                          );
+
+                  try{
+                      $post_id = $facebook->api("me/feed","POST",$attachment);
+                   }catch(Exception $e){
+                      error_log($e->getMessage());
+                  }
+          ?>
         </p>
 
         <div id="share-app">
