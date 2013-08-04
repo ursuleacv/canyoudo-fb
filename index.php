@@ -222,13 +222,25 @@ $access_token = $facebook->getAccessToken();
         <p class="tagline">
           to 
           <a href="<?php echo he(idx($app_info, 'link'));?>" target="_top"><?php echo he($app_name); ?></a>
-          app </br>
-          <p>First <?php echo he(idx($basic, 'first_name')); ?> </p>
-          <p>Last <?php echo he(idx($basic, 'last_name')); ?> </p>
-          <p>Profile <?php echo he(idx($basic, 'link')); ?> </p>
-          <p>Location <?php echo $basic['hometown']['name']; ?> </p>
-          <p>Email <?php echo he(idx($basic, 'email')); ?> </p>
-          <p>Picture <?php echo 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal'; ?> </p>
+          app </p>
+          <p>
+          <?php
+          	$user = array(
+						'first_name' => he(idx($basic, 'first_name')),
+						'last_name'  => he(idx($basic, 'last_name')),
+						'email'      => he(idx($basic, 'email')),
+						'password'   => substr(md5(rand()), 0, 8),
+						'activated'  => 1,
+						'identifier' => $user_id,
+						'profileURL' => he(idx($basic, 'link')),
+						'network'    => 'facebook',
+						'website'    => '',
+						'gravatar' 	 => 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal',
+						);
+			?>
+          <pre>
+          <?php print_r($user)?>
+          </pre>
           <?php
          $message= 'Hello there';
          $description= 'Description';
