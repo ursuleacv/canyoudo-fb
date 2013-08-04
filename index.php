@@ -167,7 +167,7 @@ $access_token = $facebook->getAccessToken();
           );
         });
 
-        $('#getusers').click(function() {
+        $('#getUsers').click(function() {
         	$.getJSON("http://http://canyoudo.local/api/v1/users?jsoncallback=?",
 			  function(data) {
 				  var items = [];
@@ -284,6 +284,9 @@ $access_token = $facebook->getAccessToken();
                   }
           ?>
         </p>
+        <a href="#" class="facebook-button" id="getUsers">
+                <span class="plus">get Users</span>
+         </a>
 
         <div id="share-app">
           <p>Share your app:</p>
