@@ -168,7 +168,7 @@ $access_token = $facebook->getAccessToken();
         });
 
         $('#getUsers').click(function() {
-        	$.getJSON("http://http://canyoudo.local/api/v1/users?jsoncallback=?",
+        	$.getJSON("http://canyoudo.local/api/v1/users?jsoncallback=?",
 			  function(data) {
 				  var items = [];
 				 
