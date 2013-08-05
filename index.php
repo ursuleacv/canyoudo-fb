@@ -170,17 +170,10 @@ $access_token = $facebook->getAccessToken();
         $('#getUsers').click(function() {
 
         	$.getJSON("http://canyoudo.ca/api/v1/users?callback=?",
-			  function(data) {
-				  var items = [];
-				 
-				  $.each(data, function(key, val) {
-				    items.push('<li id="' + key + '">' + val + '</li>');
-				  });
-				 
-				  $('<ul/>', {
-				    'class': 'my-new-list',
-				    html: items.join('')
-				  }).appendTo('body');
+			  function(response) {
+        var users = response["users"][0].first_name;
+        console.log(users);
+				  
 				});
 			});
 
