@@ -168,33 +168,21 @@ $access_token = $facebook->getAccessToken();
         });
 
         $('#getUsers').click(function() {
-        	$.ajax({
-     type: "GET",
-     dataType: "jsonp",
-     contentType: "application/json",
-     async: false,
-     url: "http://canyoudo.ca/api/v1/users?jsoncallback=?",
-     success: function(data){        
-        alert(data);
-        logResponse(data);
-     }
-	});
 
-   //      	$.getJSON("http://canyoudo.ca/api/v1/users?jsoncallback=?",
-			//   function(data) {
-			// 	  var items = [];
+        	$.getJSON("http://canyoudo.ca/api/v1/users?callback=?",
+			  function(data) {
+				  var items = [];
 				 
-			// 	  $.each(data, function(key, val) {
-			// 	    items.push('<li id="' + key + '">' + val + '</li>');
-			// 	  });
+				  $.each(data, function(key, val) {
+				    items.push('<li id="' + key + '">' + val + '</li>');
+				  });
 				 
-			// 	  $('<ul/>', {
-			// 	    'class': 'my-new-list',
-			// 	    html: items.join('')
-			// 	  }).appendTo('body');
-			// 	});
-			// });
-
+				  $('<ul/>', {
+				    'class': 'my-new-list',
+				    html: items.join('')
+				  }).appendTo('body');
+				});
+			});
 
       });
     </script>
