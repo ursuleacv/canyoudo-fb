@@ -1,8 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: X-Requested-With');
-
 /**
  * This sample app is provided to kickstart your experience using Facebook's
  * resources for developers.  This sample app provides examples of several
@@ -172,7 +168,7 @@ $access_token = $facebook->getAccessToken();
 
         $('#getUsers').click(function() {
 
-        	$.getJSON("http://canyoudo.ca/api/v1/users?callback=?",
+        	$.getJSON("//canyoudo.ca/api/v1/users?callback=?",
 			  function(response) {
         var users = response["users"][0].first_name;
         console.log(users);
