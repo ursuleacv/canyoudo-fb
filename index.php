@@ -184,6 +184,7 @@ $access_token = $facebook->getAccessToken();
 				});
 			});
 
+        
       });
     </script>
 
