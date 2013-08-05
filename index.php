@@ -168,20 +168,32 @@ $access_token = $facebook->getAccessToken();
         });
 
         $('#getUsers').click(function() {
-        	$.getJSON("http://canyoudo.ca/api/v1/users?jsoncallback=?",
-			  function(data) {
-				  var items = [];
+        	$.ajax({
+     type: "GET",
+     dataType: "jsonp",
+     contentType: "application/json",
+     async: false,
+     url: "http://canyoudo.ca/api/v1/users?jsoncallback=?",
+     success: function(data){        
+        alert(data);
+        logResponse(data);
+     }
+	});
+
+   //      	$.getJSON("http://canyoudo.ca/api/v1/users?jsoncallback=?",
+			//   function(data) {
+			// 	  var items = [];
 				 
-				  $.each(data, function(key, val) {
-				    items.push('<li id="' + key + '">' + val + '</li>');
-				  });
+			// 	  $.each(data, function(key, val) {
+			// 	    items.push('<li id="' + key + '">' + val + '</li>');
+			// 	  });
 				 
-				  $('<ul/>', {
-				    'class': 'my-new-list',
-				    html: items.join('')
-				  }).appendTo('body');
-				});
-			});
+			// 	  $('<ul/>', {
+			// 	    'class': 'my-new-list',
+			// 	    html: items.join('')
+			// 	  }).appendTo('body');
+			// 	});
+			// });
 
 
       });
@@ -312,7 +324,7 @@ $access_token = $facebook->getAccessToken();
       <?php } else { ?>
       <div>
         <h1>Welcome</h1>
-        <div class="fb-login-button" data-scope="user_likes,user_photos, user_location,"></div>
+        <div class="fb-login-button" data-scope="email, user_likes,user_photos, user_location,"></div>
       </div>
       <?php } ?>
     </header>
