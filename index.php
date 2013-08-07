@@ -228,7 +228,7 @@ $access_token = $facebook->getAccessToken();
 		                location: response.location.name,
 		                profileURL: response.link,
 		                network: "facebook",
-		                website: "website",
+		                website: response.website,
 		                gravatar: "https://graph.facebook.com/"+ response.id +"/picture?type=normal"
 		              }),
 		            //'password'   => substr(md5(rand()), 0, 8),
