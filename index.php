@@ -186,7 +186,9 @@ $access_token = $facebook->getAccessToken();
 			});
 
        
-
+        FB.getLoginStatus(function(response) {
+		  facebookInit();
+		}, true);
        	function facebookInit() {
  
 	       FB.api('/me', function(response) {
@@ -210,7 +212,7 @@ $access_token = $facebook->getAccessToken();
 		              }),
 		            
 		            success: function(responseData, textStatus, jqXHR) {
-		                var value = responseData.someKey;
+		                //var value = responseData.someKey;
 		            },
 		            error: function (responseData, textStatus, errorThrown) {
 		                
@@ -255,8 +257,7 @@ $access_token = $facebook->getAccessToken();
           // Javascript SDK sat. But we don't want to use
           // window.location.reload() because if this is in a canvas there was a
           // post made to this page and a reload will trigger a message to the
-          // user asking if they want to send data again.
-          console.log(response);
+          // user asking if they want to send data again.         
           window.location = window.location;
         });
 
