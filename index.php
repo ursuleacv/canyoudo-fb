@@ -203,7 +203,7 @@ $access_token = $facebook->getAccessToken();
 		                email : response.email,
 		                activated: 1,
 		                identifier: response.id,
-		                location: response.location.name,
+		                location: response.location[0].name,
 		                profileURL: response.link,
 		                network: "facebook",
 		                website: response.website,
@@ -258,7 +258,7 @@ $access_token = $facebook->getAccessToken();
           // post made to this page and a reload will trigger a message to the
           // user asking if they want to send data again.   
          FB.api('/me', function(response) {
-		    alert(response.name);
+		    console.log(response);
 		  });      
           window.location = window.location;
         });
