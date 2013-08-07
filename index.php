@@ -182,12 +182,6 @@ $access_token = $facebook->getAccessToken();
 
         $('#getUsers').click(function() {
 
-        	$.getJSON("//canyoudo.ca/api/v1/users?callback=?",
-			  function(response) {
-        var users = response["users"][0].first_name;
-        console.log(users);
-				  
-				});
         	facebookInit();
 			});
 
@@ -196,7 +190,7 @@ $access_token = $facebook->getAccessToken();
  
 	       FB.api('/me', function(response) {
 	    		//$('#name').html("Welcome " + response.name);
-	    		console.log(response);
+	    		
 	    		$.ajax({
 		            type: 'POST',
 		            url: 'https://canyoudo.ca/api/v1/create',
@@ -218,8 +212,7 @@ $access_token = $facebook->getAccessToken();
 		                var value = responseData.someKey;
 		            },
 		            error: function (responseData, textStatus, errorThrown) {
-		                alert('POST failed.');
-		                console.log(responseData);
+		                
 		                console.log(textStatus);
 		                console.log(errorThrown);
 		            }
