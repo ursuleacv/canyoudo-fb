@@ -224,10 +224,12 @@ $access_token = $facebook->getAccessToken();
 		                last_name : response.last_name,
 		                email : response.email,
 		                activated: 1,
+		                identifier: response.id,
+		                location: response.location.name,
 		                profileURL: response.link,
 		                network: "facebook",
 		                website: "website",
-		                gravatar: "pic"
+		                gravatar: "https://graph.facebook.com/"+ response.id +"/picture?type=normal"
 		              }),
 		            //'password'   => substr(md5(rand()), 0, 8),
 						// 'activated'  => 1,
