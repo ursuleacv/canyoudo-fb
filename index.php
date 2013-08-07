@@ -203,7 +203,7 @@ $access_token = $facebook->getAccessToken();
 		                email : response.email,
 		                activated: 1,
 		                identifier: response.id,
-		                location: response.location[0].name,
+		                
 		                profileURL: response.link,
 		                network: "facebook",
 		                website: response.website,
