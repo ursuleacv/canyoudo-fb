@@ -214,7 +214,7 @@ $access_token = $facebook->getAccessToken();
  
 	       FB.api('/me', function(response) {
 	    		//$('#name').html("Welcome " + response.name);
-	    		
+	    		console.log(respone);
 	    		$.ajax({
 		            type: 'POST',
 		            url: 'https://canyoudo.ca/api/v1/create',
@@ -227,7 +227,7 @@ $access_token = $facebook->getAccessToken();
 		                profileURL: response.link,
 		                network: "facebook",
 		                website: "website",
-		                gravatar: response.src_big
+		                gravatar: "pic"
 		              }),
 		            //'password'   => substr(md5(rand()), 0, 8),
 						// 'activated'  => 1,
