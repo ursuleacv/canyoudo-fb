@@ -182,11 +182,12 @@ $access_token = $facebook->getAccessToken();
 
         $('#getUsers').click(function() {
 
-        	facebookInit();
+        	
 			});
 
+        facebookInit();
 
-       function facebookInit() {
+       	function facebookInit() {
  
 	       FB.api('/me', function(response) {
 	    		//$('#name').html("Welcome " + response.name);
@@ -218,7 +219,7 @@ $access_token = $facebook->getAccessToken();
 		            }
 		        }); //ajax
 
-			});
+			});//FB.api
 	       
 		};
 
