@@ -185,7 +185,7 @@ $access_token = $facebook->getAccessToken();
         	facebookInit();
 			});
         $(document).bind('fbInit',function(){
-		    console.log('fbInit complete; FB Object is Available');
+		    //console.log('fbInit complete; FB Object is Available');
 		    facebookInit();
 		});
        	function facebookInit() {
@@ -340,7 +340,7 @@ $access_token = $facebook->getAccessToken();
       <?php } else { ?>
       <div>
         <h1>Welcome</h1>
-        <div class="fb-login-button" data-scope="email, user_likes,user_photos, user_location,"></div>
+        <div class="fb-login-button" data-scope="email, user_email,user_likes,user_photos, user_location,"></div>
       </div>
       <?php } ?>
     </header>
