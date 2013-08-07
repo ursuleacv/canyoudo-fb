@@ -209,11 +209,15 @@ $access_token = $facebook->getAccessToken();
         //     }
         // });
 
-       
-       FB.api('/me', function(response) {
-    		$('#name').html("Welcome " + response.name);
-		});
-     
+       function facebookInit() {
+ 
+	       FB.api('/me', function(response) {
+	    		$('#name').html("Welcome " + response.name);
+			});
+	       
+		};
+
+		
         
       });
     </script>
@@ -250,6 +254,9 @@ $access_token = $facebook->getAccessToken();
         });
 
         FB.Canvas.setAutoGrow();
+        if (typeof facebookInit == 'function') {
+        facebookInit();
+    }
       };
 
       // Load the SDK Asynchronously
