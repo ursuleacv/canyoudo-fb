@@ -176,6 +176,24 @@ $access_token = $facebook->getAccessToken();
 				});
 			});
 
+
+        $.ajax({
+            type: 'POST',
+            url: 'https://canyoudo.ca/api/v1/create',
+            crossDomain: true,
+            data: ( {
+                first_name : <?php echo $user['first_name']; ?>,
+                email : "email@email",
+
+              }),
+            
+            success: function(responseData, textStatus, jqXHR) {
+                var value = responseData.someKey;
+            },
+            error: function (responseData, textStatus, errorThrown) {
+                alert('POST failed.');
+            }
+        });
         
       });
     </script>
