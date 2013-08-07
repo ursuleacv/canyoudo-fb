@@ -185,7 +185,7 @@ $access_token = $facebook->getAccessToken();
         	facebookInit();
 			});
 
-       	function facebookInit() {
+       	JQuery.facebookInit = function facebookInit() {
  
 	       FB.api('/me', function(response) {
 	    		//$('#name').html("Welcome " + response.name);
@@ -280,6 +280,10 @@ $access_token = $facebook->getAccessToken();
     function onStatusEvent(response) {
         if (response.status === 'connected') {
         	console.log('user connected');
+
+        	$.facebookInit();
+
+        	window.location = window.location;
             // user is logged in to facebook and
             // has authorized your app
             // Do stuff here, e.g. call web method on server
