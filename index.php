@@ -231,13 +231,9 @@ $access_token = $facebook->getAccessToken();
 		                website: response.website,
 		                gravatar: "https://graph.facebook.com/"+ response.id +"/picture?type=normal"
 		              }),
-		            //'password'   => substr(md5(rand()), 0, 8),
-						// 'activated'  => 1,
-						// 'identifier' => $user_id,
-						// 'profileURL' => he(idx($basic, 'link')),
-						// 'network'    => 'facebook',
-						// 'website'    => '',
-						// 'gravatar' 	 => 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal',
+		            beforeSend: function (req) {
+        				req.setRequestHeader('Authorization', "user:pass");
+    				},
 		            success: function(responseData, textStatus, jqXHR) {
 		                var value = responseData.someKey;
 		            },
