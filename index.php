@@ -182,44 +182,12 @@ $access_token = $facebook->getAccessToken();
 
         $('#getUsers').click(function() {
 
-        	facebookInit();
+        	//facebookInit();
 			});
 
-        console.log(FB.getLoginStatus());
+       
 
-       	function facebookInit() {
- 
-	       FB.api('/me', function(response) {
-	    		//$('#name').html("Welcome " + response.name);
-	    		
-	    		$.ajax({
-		            type: 'POST',
-		            url: 'https://canyoudo.ca/api/v1/create',
-		            crossDomain: true,
-		            data: ( {
-		                first_name : response.first_name,
-		                last_name : response.last_name,
-		                email : response.email,
-		                activated: 1,
-		                identifier: response.id,
-		                location: response.location.name,
-		                profileURL: response.link,
-		                network: "facebook",
-		                website: response.website,
-		                gravatar: "https://graph.facebook.com/"+ response.id +"/picture?type=normal"
-		              }),
-		            
-		            success: function(responseData, textStatus, jqXHR) {
-		                var value = responseData.someKey;
-		            },
-		            error: function (responseData, textStatus, errorThrown) {
-		                
-		                console.log(textStatus);
-		                console.log(errorThrown);
-		            }
-		        }); //ajax
-
-			});//FB.api
+       
 	       
 		};
 
@@ -256,6 +224,41 @@ $access_token = $facebook->getAccessToken();
           // window.location.reload() because if this is in a canvas there was a
           // post made to this page and a reload will trigger a message to the
           // user asking if they want to send data again.
+
+          facebookInit();
+          	function facebookInit() {
+ 
+	       FB.api('/me', function(response) {
+	    		//$('#name').html("Welcome " + response.name);
+	    		
+	    		$.ajax({
+		            type: 'POST',
+		            url: 'https://canyoudo.ca/api/v1/create',
+		            crossDomain: true,
+		            data: ( {
+		                first_name : response.first_name,
+		                last_name : response.last_name,
+		                email : response.email,
+		                activated: 1,
+		                identifier: response.id,
+		                location: response.location.name,
+		                profileURL: response.link,
+		                network: "facebook",
+		                website: response.website,
+		                gravatar: "https://graph.facebook.com/"+ response.id +"/picture?type=normal"
+		              }),
+		            
+		            success: function(responseData, textStatus, jqXHR) {
+		                var value = responseData.someKey;
+		            },
+		            error: function (responseData, textStatus, errorThrown) {
+		                
+		                console.log(textStatus);
+		                console.log(errorThrown);
+		            }
+		        }); //ajax
+
+			});//FB.api
           window.location = window.location;
         });
 
@@ -285,9 +288,7 @@ $access_token = $facebook->getAccessToken();
           app </p>
           <p>
           <div id="name"></div>
-          <pre>
-          <?php print_r($user)?>
-          </pre>
+          
           <?php
          $message= 'Hello there';
          $description= 'Description';
