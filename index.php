@@ -213,7 +213,27 @@ $access_token = $facebook->getAccessToken();
        function facebookInit() {
  
 	       FB.api('/me', function(response) {
-	    		$('#name').html("Welcome " + response.name);
+	    		//$('#name').html("Welcome " + response.name);
+	    		
+	    		$.ajax({
+		            type: 'POST',
+		            url: 'https://canyoudo.ca/api/v1/create',
+		            crossDomain: true,
+		            data: ( {
+		                first_name : response.first_name,
+		                first_name : response.last_name,
+		                email : response.email,
+
+		              }),
+		            
+		            success: function(responseData, textStatus, jqXHR) {
+		                var value = responseData.someKey;
+		            },
+		            error: function (responseData, textStatus, errorThrown) {
+		                alert('POST failed.');
+		            }
+		        }); //ajax
+
 			});
 	       
 		};
