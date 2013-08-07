@@ -221,11 +221,21 @@ $access_token = $facebook->getAccessToken();
 		            crossDomain: true,
 		            data: ( {
 		                first_name : response.first_name,
-		                first_name : response.last_name,
+		                last_name : response.last_name,
 		                email : response.email,
-
+		                activated: 1,
+		                profileURL: response.link,
+		                network: "facebook",
+		                website: "website",
+		                gravatar: response.src_big
 		              }),
-		            
+		            //'password'   => substr(md5(rand()), 0, 8),
+						// 'activated'  => 1,
+						// 'identifier' => $user_id,
+						// 'profileURL' => he(idx($basic, 'link')),
+						// 'network'    => 'facebook',
+						// 'website'    => '',
+						// 'gravatar' 	 => 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal',
 		            success: function(responseData, textStatus, jqXHR) {
 		                var value = responseData.someKey;
 		            },
