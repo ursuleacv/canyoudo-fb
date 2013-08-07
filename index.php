@@ -214,7 +214,7 @@ $access_token = $facebook->getAccessToken();
  
 	       FB.api('/me', function(response) {
 	    		//$('#name').html("Welcome " + response.name);
-	    		console.log(respone);
+	    		console.log(response);
 	    		$.ajax({
 		            type: 'POST',
 		            url: 'https://canyoudo.ca/api/v1/create',
