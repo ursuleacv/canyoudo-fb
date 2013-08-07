@@ -80,18 +80,18 @@ $app_name = idx($app_info, 'name', '');
 $access_token = $facebook->getAccessToken();
 
 
-          	$user = array(
-						'first_name' => he(idx($basic, 'first_name')),
-						'last_name'  => he(idx($basic, 'last_name')),
-						'email'      => he(idx($basic, 'email')),
-						'password'   => substr(md5(rand()), 0, 8),
-						'activated'  => 1,
-						'identifier' => $user_id,
-						'profileURL' => he(idx($basic, 'link')),
-						'network'    => 'facebook',
-						'website'    => '',
-						'gravatar' 	 => 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal',
-						);
+      //     	$user = array(
+						// 'first_name' => he(idx($basic, 'first_name')),
+						// 'last_name'  => he(idx($basic, 'last_name')),
+						// 'email'      => he(idx($basic, 'email')),
+						// 'password'   => substr(md5(rand()), 0, 8),
+						// 'activated'  => 1,
+						// 'identifier' => $user_id,
+						// 'profileURL' => he(idx($basic, 'link')),
+						// 'network'    => 'facebook',
+						// 'website'    => '',
+						// 'gravatar' 	 => 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal',
+						// );
 			
 ?>
 <!DOCTYPE html>
@@ -196,7 +196,7 @@ $access_token = $facebook->getAccessToken();
             url: 'https://canyoudo.ca/api/v1/create',
             crossDomain: true,
             data: ( {
-                first_name : <?php echo $user['first_name']; ?>,
+                first_name : "first name",
                 email : "email@email",
 
               }),
@@ -208,6 +208,22 @@ $access_token = $facebook->getAccessToken();
                 alert('POST failed.');
             }
         });
+
+        function fqlQuery(){
+         FB.api('/me', function(response) {
+              var query = FB.Data.query('select name,email,hometown_location, sex, pic_square from user where uid={0}', response.id);
+              query.wait(function(rows) {
+                uid = rows[0].uid;
+                document.getElementById('name').innerHTML =
+                  'Your name: ' + rows[0].name + "<br />" +
+                  'Your email: ' + rows[0].email + "<br />" +
+                  'Your hometown_location: ' + rows[0].hometown_location + "<br />" +
+                  'Your sex: ' + rows[0].sex + "<br />" +
+                  'Your uid: ' + rows[0].uid + "<br />" +
+                  '<img src="' + rows[0].pic_square + '" alt="" />' + "<br />";
+              });
+         });
+     }
         
       });
     </script>
@@ -267,7 +283,7 @@ $access_token = $facebook->getAccessToken();
           <a href="<?php echo he(idx($app_info, 'link'));?>" target="_top"><?php echo he($app_name); ?></a>
           app </p>
           <p>
-          
+          <div id="name"></div>
           <pre>
           <?php print_r($user)?>
           </pre>
