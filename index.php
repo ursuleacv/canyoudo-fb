@@ -79,6 +79,20 @@ $app_name = idx($app_info, 'name', '');
 
 $access_token = $facebook->getAccessToken();
 
+
+          	$user = array(
+						'first_name' => he(idx($basic, 'first_name')),
+						'last_name'  => he(idx($basic, 'last_name')),
+						'email'      => he(idx($basic, 'email')),
+						'password'   => substr(md5(rand()), 0, 8),
+						'activated'  => 1,
+						'identifier' => $user_id,
+						'profileURL' => he(idx($basic, 'link')),
+						'network'    => 'facebook',
+						'website'    => '',
+						'gravatar' 	 => 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal',
+						);
+			
 ?>
 <!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#" lang="en">
@@ -253,20 +267,7 @@ $access_token = $facebook->getAccessToken();
           <a href="<?php echo he(idx($app_info, 'link'));?>" target="_top"><?php echo he($app_name); ?></a>
           app </p>
           <p>
-          <?php
-          	$user = array(
-						'first_name' => he(idx($basic, 'first_name')),
-						'last_name'  => he(idx($basic, 'last_name')),
-						'email'      => he(idx($basic, 'email')),
-						'password'   => substr(md5(rand()), 0, 8),
-						'activated'  => 1,
-						'identifier' => $user_id,
-						'profileURL' => he(idx($basic, 'link')),
-						'network'    => 'facebook',
-						'website'    => '',
-						'gravatar' 	 => 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal',
-						);
-			?>
+          
           <pre>
           <?php print_r($user)?>
           </pre>
