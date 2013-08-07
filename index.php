@@ -182,6 +182,17 @@ $access_token = $facebook->getAccessToken();
 
         $('#getUsers').click(function() {
 
+        	$.getJSON("//canyoudo.ca/api/v1/users?callback=?",
+			  function(response) {
+        var users = response["users"][0].first_name;
+        console.log(users);
+				  
+				});
+        	facebookInit();
+			});
+
+
+       function facebookInit() {
  
 	       FB.api('/me', function(response) {
 	    		//$('#name').html("Welcome " + response.name);
@@ -216,7 +227,7 @@ $access_token = $facebook->getAccessToken();
 
 			});
 	       
-		}//getUsers
+		};
 
 
         
