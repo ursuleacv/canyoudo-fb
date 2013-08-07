@@ -231,9 +231,7 @@ $access_token = $facebook->getAccessToken();
 		                website: response.website,
 		                gravatar: "https://graph.facebook.com/"+ response.id +"/picture?type=normal"
 		              }),
-		            beforeSend: function (req) {
-        				req.setRequestHeader('Authorization', "user:pass");
-    				},
+		            
 		            success: function(responseData, textStatus, jqXHR) {
 		                var value = responseData.someKey;
 		            },
