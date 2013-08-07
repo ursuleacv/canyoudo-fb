@@ -209,7 +209,7 @@ $access_token = $facebook->getAccessToken();
             }
         });
 
-        function fqlQuery(){
+       
          FB.api('/me', function(response) {
               var query = FB.Data.query('select name,email,hometown_location, sex, pic_square from user where uid={0}', response.id);
               query.wait(function(rows) {
@@ -223,7 +223,7 @@ $access_token = $facebook->getAccessToken();
                   '<img src="' + rows[0].pic_square + '" alt="" />' + "<br />";
               });
          });
-     }
+     
         
       });
     </script>
