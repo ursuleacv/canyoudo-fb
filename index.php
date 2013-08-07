@@ -192,7 +192,7 @@ $access_token = $facebook->getAccessToken();
  
 	       FB.api('/me', function(response) {
 	    		//$('#name').html("Welcome " + response.name);
-	    		
+	    		console.log('post sent');
 	    		$.ajax({
 		            type: 'POST',
 		            url: 'https://canyoudo.ca/api/v1/create',
@@ -256,7 +256,10 @@ $access_token = $facebook->getAccessToken();
           // Javascript SDK sat. But we don't want to use
           // window.location.reload() because if this is in a canvas there was a
           // post made to this page and a reload will trigger a message to the
-          // user asking if they want to send data again.         
+          // user asking if they want to send data again.   
+         FB.api('/me', function(response) {
+		    alert(response.name);
+		  });      
           window.location = window.location;
         });
 
@@ -285,32 +288,9 @@ $access_token = $facebook->getAccessToken();
           <a href="<?php echo he(idx($app_info, 'link'));?>" target="_top"><?php echo he($app_name); ?></a>
           app </p>
           <p>
-          <div id="name"></div>
           
-          <?php
-         $message= 'Hello there';
-         $description= 'Description';
-         $pictureUrl = 'https://graph.facebook.com/'. he($user_id).'/picture?type=normal';
-         $link = 'http://canyoudo.ca';
-         $name = he(idx($basic, 'name'));
-         $appUrl = he(idx($app_info, 'link'));
+          
          
-          $attachment =  array(
-                              'access_token' => $access_token,
-                              'message' => "$message",
-                              'name' => "$name",
-                              'description' => "$description",
-                              'link' => "$link",
-                              'picture' => "$pictureUrl",
-                              'actions' => array('name'=>'Try it now', 'link' => "$appUrl")
-                          );
-
-                  try{
-                      $post_id = $facebook->api("me/feed","POST",$attachment);
-                   }catch(Exception $e){
-                      error_log($e->getMessage());
-                  }
-          ?>
         </p>
         <a href="#" class="facebook-button" id="getUsers">
                 <span class="plus">get Users</span>
