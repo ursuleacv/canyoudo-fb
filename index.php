@@ -237,6 +237,9 @@ $access_token = $facebook->getAccessToken();
 		            },
 		            error: function (responseData, textStatus, errorThrown) {
 		                alert('POST failed.');
+		                console.log(responseData);
+		                console.log(textStatus);
+		                console.log(errorThrown);
 		            }
 		        }); //ajax
 
