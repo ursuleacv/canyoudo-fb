@@ -182,10 +182,10 @@ $access_token = $facebook->getAccessToken();
 
         $('#getUsers').click(function() {
 
-        	
+        	facebookInit();
 			});
 
-        
+        console.log(FB.getLoginStatus());
 
        	function facebookInit() {
  
@@ -260,7 +260,7 @@ $access_token = $facebook->getAccessToken();
         });
 
         FB.Canvas.setAutoGrow();
-        facebookInit();
+        
       };
 
       // Load the SDK Asynchronously
