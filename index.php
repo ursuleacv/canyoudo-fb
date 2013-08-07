@@ -188,6 +188,7 @@ $access_token = $facebook->getAccessToken();
         console.log(users);
 				  
 				});
+        	facebookInit();
 			});
 
 
@@ -217,7 +218,7 @@ $access_token = $facebook->getAccessToken();
 	       
 		};
 
-		
+
         
       });
     </script>
@@ -254,9 +255,7 @@ $access_token = $facebook->getAccessToken();
         });
 
         FB.Canvas.setAutoGrow();
-        if (typeof facebookInit == 'function') {
-        facebookInit();
-    }
+        
       };
 
       // Load the SDK Asynchronously
