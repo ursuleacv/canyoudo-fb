@@ -185,63 +185,6 @@ $access_token = $facebook->getAccessToken();
         	facebookInit();
 			});
 
-       
-       
-
-
-        
-      });
-    </script>
-
-    <!--[if IE]>
-      <script type="text/javascript">
-        var tags = ['header', 'section'];
-        while(tags.length)
-          document.createElement(tags.pop());
-      </script>
-    <![endif]-->
-  </head>
-  <body>
-    <div id="fb-root"></div>
-    <script type="text/javascript">
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '<?php echo AppInfo::appID(); ?>', // App ID
-          channelUrl : '//<?php echo $_SERVER["HTTP_HOST"]; ?>/channel.html', // Channel File
-          status     : true, // check login status
-          cookie     : true, // enable cookies to allow the server to access the session
-          xfbml      : true // parse XFBML
-        });
-
-        // Listen to the auth.login which will be called when the user logs in
-        // using the Login button
-        FB.Event.subscribe('auth.login', function(response) {
-          // We want to reload the page now so PHP can read the cookie that the
-          // Javascript SDK sat. But we don't want to use
-          // window.location.reload() because if this is in a canvas there was a
-          // post made to this page and a reload will trigger a message to the
-          // user asking if they want to send data again.         
-          window.location = window.location;
-        });
-
-        FB.Canvas.setAutoGrow();
-        
-      };
-
-      // Load the SDK Asynchronously
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-       FB.getLoginStatus(function(response) {
-		  	if (response && response.status == 'connected'){
-		  		facebookInit();
-		  	}
-		}, true);
        	function facebookInit() {
  
 	       FB.api('/me', function(response) {
@@ -277,6 +220,112 @@ $access_token = $facebook->getAccessToken();
 			});//FB.api
 	       
 		}; //facebookInit
+
+
+        
+      });
+    </script>
+
+    <!--[if IE]>
+      <script type="text/javascript">
+        var tags = ['header', 'section'];
+        while(tags.length)
+          document.createElement(tags.pop());
+      </script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="fb-root"></div>
+    <script type="text/javascript">
+    // Define the ready handler
+    // This is the same as $(document).ready(...)
+    $(function() {
+        // Create the ready app to handle initialization
+        function facebookReady() {
+            // call facebook init
+            FB.init({
+                appId      : '<?php echo AppInfo::appID(); ?>', // App ID
+      			channelUrl : '//<?php echo $_SERVER["HTTP_HOST"]; ?>/channel.html', // Channel File
+                status: true, // check login status
+                cookie: true,
+                xfbml: true,  // parse XFBML
+                oauth: true
+            });
+            // Initialization called, trigger the
+            // facebook ready event
+            $(document).trigger("facebook:ready");
+        }
+ 
+        // Query if FB object is available, if not
+        // assign the window async function
+        // otherwise, initialize per Facebook documentation
+        if (window.FB) {
+            facebookReady();
+        } else {
+            window.fbAsyncInit = facebookReady;
+        }
+    });
+ 
+    // Create the event
+    $(document).on("facebook:ready", function() {
+       // Get facebook status
+        FB.getLoginStatus(function(response) {
+            // Call the onStatusEvent function to get things rolling
+            onStatusEvent(response); // once on page load
+            // subscribe to status change event
+            FB.Event.subscribe('auth.statusChange', onStatusEvent); // every status change
+        });
+    });
+     
+    function onStatusEvent(response) {
+        if (response.status === 'connected') {
+        	console.log('user connected');
+            // user is logged in to facebook and
+            // has authorized your app
+            // Do stuff here, e.g. call web method on server
+            // and pass information via ajax call
+        } else if (response.status === 'not_authorized') {
+            // user is logged in to facebook
+            // user has not authorized app
+            // or user has not visited web page
+            console.log('user not auth');
+        } else {
+            // User is not logged in, status unknown
+            }
+        }
+
+      // window.fbAsyncInit = function() {
+      //   FB.init({
+      //     appId      : '<?php echo AppInfo::appID(); ?>', // App ID
+      //     channelUrl : '//<?php echo $_SERVER["HTTP_HOST"]; ?>/channel.html', // Channel File
+      //     status     : true, // check login status
+      //     cookie     : true, // enable cookies to allow the server to access the session
+      //     xfbml      : true // parse XFBML
+      //   });
+
+      //   // Listen to the auth.login which will be called when the user logs in
+      //   // using the Login button
+      //   FB.Event.subscribe('auth.login', function(response) {
+      //     // We want to reload the page now so PHP can read the cookie that the
+      //     // Javascript SDK sat. But we don't want to use
+      //     // window.location.reload() because if this is in a canvas there was a
+      //     // post made to this page and a reload will trigger a message to the
+      //     // user asking if they want to send data again.         
+      //     window.location = window.location;
+      //   });
+
+      //   FB.Canvas.setAutoGrow();
+        
+      // };
+
+      // Load the SDK Asynchronously
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
     </script>
 
     <header class="clearfix">
